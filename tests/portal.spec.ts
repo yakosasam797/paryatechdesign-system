@@ -64,6 +64,12 @@ test("component API, clipboard, Markdown and Storybook link", async ({
   await expect(
     page.getByRole("heading", { name: "Button", exact: true }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Source", exact: true }),
+  ).toHaveAttribute(
+    "href",
+    /^https:\/\/github\.com\/yakosasam797\/paryatechdesign-system\/blob\/main\/packages\/web\/src\/components\/primitives\.tsx#L\d+$/,
+  );
   await page.getByRole("button", { name: "Copy for LLM", exact: true }).click();
   await expect
     .poll(() => page.evaluate(() => navigator.clipboard.readText()))

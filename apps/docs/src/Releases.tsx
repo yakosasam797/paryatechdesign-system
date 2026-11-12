@@ -33,7 +33,11 @@ export default function Releases() {
       <p className="ds-caption">{history.publication}</p>
       <p className="ds-release-links">
         <a
-          href={`${current.source}/blob/main/CHANGELOG.md`}
+          href={
+            current.source.includes("/tree/")
+              ? `${current.source.replace("/tree/", "/blob/")}/CHANGELOG.md`
+              : `${current.source}/blob/main/CHANGELOG.md`
+          }
           target="_blank"
           rel="noreferrer"
         >

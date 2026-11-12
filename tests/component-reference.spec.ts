@@ -31,7 +31,10 @@ test("every code reference has connected guidance and matching copied documentat
     for (const line of doc.documentation.accessibility)
       expect(markdown, doc.name).toContain(line);
     expect(markdown).toContain(
-      "/parya.designsystem.code/tree/main/apps/storybook",
+      "/paryatechdesign-system/tree/main/apps/storybook",
+    );
+    expect(markdown, doc.name).toContain(
+      `[Source](https://github.com/yakosasam797/paryatechdesign-system/blob/main/${doc.sourcePath}#L${doc.sourceLine})`,
     );
   }
   const button = docs.find((doc) => doc.name === "Button").documentation;

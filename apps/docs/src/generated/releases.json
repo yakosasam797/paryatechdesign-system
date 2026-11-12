@@ -5,7 +5,7 @@
       "name": "@parya/design-system",
       "version": "0.3.1",
       "description": "React components, foundations, hooks and page templates.",
-      "source": "https://github.com/yakosasam797/parya.designsystem.code",
+      "source": "https://github.com/yakosasam797/paryatechdesign-system",
       "releases": [
         {
           "version": "0.3.1",
@@ -100,7 +100,7 @@
       "name": "parya-designsystem-storybook",
       "version": "0.3.1",
       "description": "Private Storybook application using @parya/design-system.",
-      "source": "https://github.com/yakosasam797/parya.designsystem.code/tree/main/apps/storybook",
+      "source": "https://github.com/yakosasam797/paryatechdesign-system/tree/main/apps/storybook",
       "releases": [
         {
           "version": "0.3.1",

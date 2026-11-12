@@ -49,6 +49,26 @@ try {
     }
   });
 
+  await page.goto(`${base}/#/components/Button`);
+  const source = page.getByRole("link", { name: "Source", exact: true });
+  await source.waitFor();
+  const sourceUrl = await source.getAttribute("href");
+  assert.match(
+    sourceUrl,
+    /^https:\/\/github\.com\/yakosasam797\/paryatechdesign-system\/blob\/main\/packages\/web\/src\/components\/primitives\.tsx#L\d+$/,
+  );
+  const github = await fetch(sourceUrl, { signal: AbortSignal.timeout(30000) });
+  assert.equal(github.status, 200, "Button source exists on GitHub");
+  await github.text();
+  const markdown = await (await fetch(`${base}/docs/Button.md`)).text();
+  assert.ok(
+    markdown.includes(`[Source](${sourceUrl})`),
+    "Markdown and Source CTA agree",
+  );
+  console.log(
+    "PASS Button source link opens an existing file in the deployed repository",
+  );
+
   await page.goto(`${base}/#/components/Checkbox`);
   const link = page.getByRole("link", { name: "Storybook", exact: true });
   await link.waitFor();

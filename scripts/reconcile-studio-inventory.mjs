@@ -1,5 +1,7 @@
 import { readFile, writeFile, access } from "node:fs/promises";
 import * as runtime from "../packages/web/dist/index.js";
+const pkg = JSON.parse(await readFile("packages/web/package.json", "utf8"));
+const repositoryUrl = pkg.repository.url.replace(/\.git$/, "");
 
 // Studio contributes inventory names and design guidance only, never implementation.
 const source = JSON.parse(
@@ -33,7 +35,7 @@ const items = await Promise.all(
       paperUrl: design?.paperUrl ?? null,
       sourcePath: code?.sourcePath ?? null,
       sourceUrl: code
-        ? `https://github.com/yakosasam797/parya.designsystem.code/blob/main/${code.sourcePath}#L${code.sourceLine}`
+        ? `${repositoryUrl}/blob/main/${code.sourcePath}#L${code.sourceLine}`
         : null,
       documentationUrl: code
         ? `http://127.0.0.1:5190/#/components/${entry.name}`

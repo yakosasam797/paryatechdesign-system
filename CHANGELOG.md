@@ -8,7 +8,7 @@ Templates own page spacing. Phone layouts reuse the same template slots, semanti
 
 React components, foundations, hooks and page templates.
 
-Source: https://github.com/yakosasam797/parya.designsystem.code
+Source: https://github.com/yakosasam797/paryatechdesign-system
 
 ### 0.3.1 · 2026-10-29 — Horizontal logo and documentation polish
 
@@ -70,7 +70,7 @@ Source: https://github.com/yakosasam797/parya.designsystem.code
 
 Private Storybook application using @parya/design-system.
 
-Source: https://github.com/yakosasam797/parya.designsystem.code/tree/main/apps/storybook
+Source: https://github.com/yakosasam797/paryatechdesign-system/tree/main/apps/storybook
 
 ### 0.3.1 · 2026-10-29 — Corrected horizontal logo
 

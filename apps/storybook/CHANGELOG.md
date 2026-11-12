@@ -19,4 +19,4 @@ Run sync after updating the shared library. This is a private application.
 - Shared v0.2 collection-control examples and foundation stories.
 - API controls synchronized with the shared component definitions, including QuantityField.
 
-The component library and complete package-by-package history are documented in [Parya releases](https://github.com/yakosasam797/parya.designsystem.code/blob/main/CHANGELOG.md).
+The component library and complete package-by-package history are documented in [Parya releases](https://github.com/yakosasam797/paryatechdesign-system/blob/main/CHANGELOG.md).

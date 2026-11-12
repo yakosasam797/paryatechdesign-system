@@ -16,7 +16,7 @@ const BrandAssets = React.lazy(() => import("./brand/BrandAssets"));
 const Releases = React.lazy(() => import("./Releases"));
 const IconLibrary = React.lazy(() => import("./IconLibrary"));
 
-const REPO = "https://github.com/yakosasam797/parya.designsystem.code";
+const REPO = packageInfo.repository.url.replace(/\.git$/, "");
 const PAPER = "https://app.paper.design/file/01M5KKMF33S23DNN84NAWWBTJR";
 const categories = [...new Set(paper.map((c) => c.category))];
 const allNames = [
@@ -1617,7 +1617,7 @@ function Installation() {
         website.
       </p>
       <Code
-        code={`git clone ${REPO}.git\ncd parya.designsystem.code\nnpm ci\nnpm run pack:lib`}
+        code={`git clone ${REPO}.git\ncd ${REPO.split("/").at(-1)}\nnpm ci\nnpm run pack:lib`}
       />
       <h2>2. Add it to your application</h2>
       <Code

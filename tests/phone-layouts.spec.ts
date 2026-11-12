@@ -85,6 +85,12 @@ test("package histories show their own versions and generated source", async ({
   ).toBeVisible();
   await page.getByLabel("Package", { exact: true }).selectOption("storybook");
   await expect(
+    page.getByRole("link", { name: "Source history", exact: true }),
+  ).toHaveAttribute(
+    "href",
+    "https://github.com/yakosasam797/paryatechdesign-system/blob/main/apps/storybook/CHANGELOG.md",
+  );
+  await expect(
     page.getByRole("heading", {
       name: "parya-designsystem-storybook",
       exact: true,
