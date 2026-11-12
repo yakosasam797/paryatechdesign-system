@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { chromium } from "@playwright/test";
+import { chromium, expect } from "@playwright/test";
 
 const base = process.argv[2]?.replace(/\/+$/, "");
 if (!base || !/^https?:\/\//.test(base)) {
@@ -96,8 +96,8 @@ try {
     exact: true,
   });
   await checkbox.waitFor({ timeout: 60000 });
-  await checkbox.check();
-  assert.equal(await checkbox.isChecked(), true);
+  await checkbox.click();
+  await expect(checkbox).toBeChecked();
   assert.deepEqual(
     errors,
     [],
