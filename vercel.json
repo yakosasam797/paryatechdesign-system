@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "app": {
+      "root": "apps/docs",
+      "framework": "vite",
+      "installCommand": "npm --prefix ../.. ci",
+      "buildCommand": "npm --prefix ../.. run build:docs",
+      "devCommand": "node ../../scripts/dev-vercel-service.mjs app",
+      "outputDirectory": "dist"
+    },
+    "storybook": {
+      "root": "apps/storybook",
+      "framework": "storybook",
+      "installCommand": "npm --prefix ../.. ci",
+      "buildCommand": "npm --prefix ../.. run build:storybook",
+      "devCommand": "node ../../scripts/dev-vercel-service.mjs storybook",
+      "outputDirectory": "storybook-static"
+    }
+  },
+  "redirects": [
+    { "source": "/storybook", "destination": "/storybook/", "permanent": true }
+  ],
+  "rewrites": [
+    {
+      "source": "/storybook/(.*)",
+      "destination": { "service": "storybook", "path": "/$1" }
+    },
+    { "source": "/(.*)", "destination": { "service": "app" } }
+  ]
+}

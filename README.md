@@ -155,9 +155,9 @@ Source is in `packages/web/src/components/`. Shared examples are in `packages/we
 
 ## Hosting
 
-Connect this GitHub repository to two Vercel projects, using `apps/docs` and `apps/storybook` as their root directories. Each app has its own `vercel.json`. See [DEPLOYMENT.md](DEPLOYMENT.md) for the exact settings and how to connect the two website URLs.
+Connect this GitHub repository to one Vercel project at the repository root. The root `vercel.json` builds documentation as the `app` service at `/` and Storybook as the `storybook` service at `/storybook/`. Both are public; neither makes server-to-server calls, so no internal bindings are needed. See [DEPLOYMENT.md](DEPLOYMENT.md) for routing, project settings, and local verification with `npx vercel@latest dev --local`.
 
-`npm run build:docs` generates `apps/docs/dist/`; `npm run build:storybook` generates `apps/storybook/storybook-static/`. These are build output, not source folders. Set `VITE_STORYBOOK_URL` to the published Storybook origin for public documentation. `DOCS_BASE` is `/` by default. CI validates both applications from one checkout; deployment and npm publication remain separate actions.
+`npm run build:docs` generates `apps/docs/dist/`; `npm run build:storybook` generates `apps/storybook/storybook-static/`. These are build output, not source folders. Public documentation links default to `/storybook/`; `VITE_STORYBOOK_URL` is only an optional override for a separately hosted public Storybook. Keep `DOCS_BASE=/` with the root services configuration. CI validates both applications from one checkout; deployment and npm publication remain separate actions.
 
 ## Production adoption
 

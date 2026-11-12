@@ -54,9 +54,10 @@ const searchEntries = [
             : "Design reference",
   })),
 ];
-const local = ["127.0.0.1", "localhost"].includes(location.hostname);
-const storybookBase =
-  import.meta.env.VITE_STORYBOOK_URL || (local ? "http://127.0.0.1:6008" : "");
+const storybookBase = (
+  import.meta.env.VITE_STORYBOOK_URL ||
+  (import.meta.env.DEV ? "http://127.0.0.1:6008" : "/storybook")
+).replace(/\/+$/, "");
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 type ComponentDoc = (typeof components)[number];
 
@@ -1671,11 +1672,10 @@ function Installation() {
       </div>
       <h2>Publishing</h2>
       <p>
-        Connect this repository to two Vercel projects: apps/docs and
-        apps/storybook. Each app includes a build configuration and gets its own
-        website address. Set VITE_STORYBOOK_URL to the published Storybook
-        address when building the documentation. Deployments and package
-        publication have not been enabled.
+        Connect this repository to one Vercel project with its root directory
+        set to the repository root. Documentation is served at / and Storybook
+        at /storybook/ on the same website. Deploying the websites does not
+        publish the component package.
       </p>
     </article>
   );

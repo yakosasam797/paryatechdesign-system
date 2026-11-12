@@ -8,6 +8,8 @@ const config: StorybookConfig = {
   docs: { defaultName: "Docs" },
   core: { disableTelemetry: true },
   async viteFinal(config) {
+    // Keep preview assets relative so both /storybook/ and standalone previews work.
+    config.base = "./";
     config.resolve = {
       ...config.resolve,
       dedupe: ["react", "react-dom"],

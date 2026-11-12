@@ -196,7 +196,7 @@ for (const theme of ["light", "dark"])
     await expect(page).toHaveURL(/#\/foundations\/color$/);
   });
 
-test("the repository uses local workspaces and contains both deployment configurations", () => {
+test("the repository uses local workspaces and one services deployment configuration", () => {
   const root = JSON.parse(readFileSync("package.json", "utf8"));
   expect(root.private).toBe(true);
   expect(root.workspaces).toEqual(["packages/*", "apps/*"]);
@@ -205,9 +205,21 @@ test("the repository uses local workspaces and contains both deployment configur
     resolved: "packages/web",
     link: true,
   });
-  for (const name of ["docs", "storybook"]) {
-    const config = JSON.parse(readFileSync(`apps/${name}/vercel.json`, "utf8"));
-    expect(config.installCommand).toBe("cd ../.. && npm ci");
+  const deployment = JSON.parse(readFileSync("vercel.json", "utf8"));
+  expect(Object.keys(deployment.services)).toEqual(["app", "storybook"]);
+  expect(deployment.rewrites).toEqual([
+    {
+      source: "/storybook/(.*)",
+      destination: { service: "storybook", path: "/$1" },
+    },
+    { source: "/(.*)", destination: { service: "app" } },
+  ]);
+  for (const [service, name] of [
+    ["app", "docs"],
+    ["storybook", "storybook"],
+  ]) {
+    expect(deployment.services[service].root).toBe(`apps/${name}`);
+    expect(existsSync(`apps/${name}/vercel.json`)).toBe(false);
     expect(existsSync(`apps/${name}/package-lock.json`)).toBe(false);
     expect(readFileSync(`apps/${name}/package.json`, "utf8")).not.toContain(
       "file:../",
