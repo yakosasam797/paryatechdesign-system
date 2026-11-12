@@ -210,7 +210,7 @@ test("the repository uses local workspaces and one services deployment configura
   expect(deployment.rewrites).toEqual([
     {
       source: "/storybook/(.*)",
-      destination: { service: "storybook", path: "/$1" },
+      destination: { service: "storybook" },
     },
     { source: "/(.*)", destination: { service: "app" } },
   ]);

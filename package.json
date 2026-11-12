@@ -44,6 +44,7 @@
     "test": "vitest run",
     "check": "npm run typecheck && npm test && npm run build",
     "test:e2e": "playwright test",
+    "test:deployment": "node scripts/verify-deployment.mjs",
     "test:storybook": "npm test --workspace parya-designsystem-storybook --",
     "test:package": "npm run build:lib && node scripts/verify-package.mjs",
     "pack:lib": "npm pack --workspace @parya/design-system",

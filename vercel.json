@@ -15,7 +15,11 @@
       "installCommand": "npm --prefix ../.. ci",
       "buildCommand": "npm --prefix ../.. run build:storybook",
       "devCommand": "node ../../scripts/dev-vercel-service.mjs storybook",
-      "outputDirectory": "storybook-static"
+      "outputDirectory": "storybook-static",
+      "rewrites": [
+        { "source": "/storybook/", "destination": "/index.html" },
+        { "source": "/storybook/:assetPath+", "destination": "/:assetPath+" }
+      ]
     }
   },
   "redirects": [
@@ -24,7 +28,7 @@
   "rewrites": [
     {
       "source": "/storybook/(.*)",
-      "destination": { "service": "storybook", "path": "/$1" }
+      "destination": { "service": "storybook" }
     },
     { "source": "/(.*)", "destination": { "service": "app" } }
   ]
